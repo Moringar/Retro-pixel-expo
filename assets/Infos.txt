@@ -1,0 +1,6 @@
+Fonts : 
+
+upheavtt.ttf 				= Partie pixélisée dans le titre
+Rene Bieder - Quarion Book DEMO 	= adresse
+Rene Bieder - Quarion Bold DEMO 	= "Rétro" dans le titre 
+LEMONMILK-Light				= liens du logo "Slide Sight"
