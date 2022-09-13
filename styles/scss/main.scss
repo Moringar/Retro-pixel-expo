@@ -1,6 +1,6 @@
-// Import du fichier variables.scss
+//🟢 Imports & resets ==============================================================
 @import "variables";
-
+@import"fonts";
 * {
     padding: 0;
     margin: 0;
@@ -11,7 +11,11 @@
 *::before {
     box-sizing: border-box;
 }
+//🔴 FIN Imports & resets ==============================================================
 
+
+
+// 🟢 General & main containers ========================================================
 body {
     position: relative;
     background-color: $couleur-body; /* A retirer/modifier */
@@ -37,25 +41,65 @@ html::before{
     height: 96vh;
     margin: auto;
 
-    margin-top: 2vh;
+    margin-top: -18vh;
 
-    border-radius: 20px;
+    border-radius: 2px;
 
     overflow: hidden;
 
-    transform: scale(0.7);
 
+    user-select: none;
+    pointer-events: none;
 }
 
-
-//============================================================================
 // FORAMAT IMAGES WEBP
 .formatContent{
     position: absolute;
+}
+// 🔴 FIN general & main containers========================================================
 
+
+
+//🟢 Elements Hors-parralax==================================================================
+
+header{
+    margin-top: 9vh;
+    
 }
 
-// OBJETS visuels INDIVIDUELS ==============================================================================
+#titleShaker{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    margin: auto;
+    z-index: 100;
+}
+
+
+#title{
+    position: relative;
+    width: 69vh;
+    z-index: 100;
+    filter: drop-shadow(1px 1px 8px rgba(255, 255, 255, 0.323));
+    color: #5a0799;
+}
+
+
+#subTitle{
+    position: relative;
+    z-index: 100;
+
+    font-family: pixelFont;
+    color: white;
+}
+//🔴 FIN Hors-parralax==================================================================
+
+
+
+
+//🟢 placement d'objets (parralax) INDIVIDUELS ==============================================================================
 #Noisefilter{
     width: 100%;
     height: 100%;
@@ -71,13 +115,11 @@ html::before{
     
     pointer-events: none; 
 }
-
 #background{
     width: 115%;
     top: -10%;
     left: -6%;
 }
-
 #pool{
     width: 110%;
     bottom: 0;
@@ -90,7 +132,6 @@ html::before{
     aspect-ratio: 1;
     transform: rotate(10deg) skewX(-28deg);
 }
-
 #pipes {
     width: 32%;
     top: 33%;
@@ -136,30 +177,41 @@ html::before{
     width: 14.5%;
     top: 31.5%;
     left: -1%;
-}
-
-#mac {
-    width: 14.5%;
-    top: 31.5%;
-    left: -1%;
+    pointer-events: all;
 }
 #plante{
     width: 18.5%;
     top: 77.5%;
     left: 84%;
 }
-
 #girlShirt {
     width: 11.5%;
     top: 20.5%;
     left: 90%;
 }
-
 #girlArm {
     width: 33.5%;
     top: 37.9%;
     left: 62%;
 }
+#phone {
+    width: 25.5%;
+    top: 45.9%;
+    left: 32%;
+    z-index: 100;
+    filter: brightness(30%);
+}
+#phoneCase {
+    width: 25.5%;
+    top: 45.9%;
+    left: 32%;
+    z-index: 100;
+}
+#girlLeg {
+    width: 12.5%;
+    top: 50.5%;
+    left: 89%;
+}
 #girlLeg {
     width: 12.5%;
     top: 50.5%;
@@ -170,28 +222,19 @@ html::before{
     top: 50.5%;
     left: 89%;
 }
-
-#girlLeg {
-    width: 12.5%;
-    top: 50.5%;
-    left: 89%;
-}
-
 #girlHead{
     width: 26%;
     top: 13%;
     left: 74.3%;
 }
-
 #handMe{
     width: 45%;
     top: 69%;
     left: -6.7%;
 }
-
-// FIN OBJETS INDIVIDUELS ======================================================
-
+//🔴 FIN OBJETS INDIVIDUELS ======================================================
 
 
-//================================================================================
-// Parallax classes / send help.
+
+
+

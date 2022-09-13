@@ -2,19 +2,25 @@ console.log("Script activé! beep-boop")
 
 
 
-// QUERY ET VARIABLES ########################################################################################
+//🟢 QUERY ET VARIABLES ================================================================================================
+// ================================================================================================
 
 const poster = document.querySelector(".affiche-container");
+const titleShaker = document.querySelector("#titleShaker")
+
+
+
 let appleClick = "0"
-let posterScale = 0.7;
+let posterScale = 0.9;
 
-// FIN QUERY ET VARIABLES ########################################################################################
+poster.style.transform = `scale(${posterScale})`
+
+//🔴  FIN QUERY ET VARIABLES ================================================================================================
 
 
 
-
-
-//PARRALAX ELEMENTS  ##################################################################################
+//🟢 PARRALAX ELEMENTS  ================================================================================================
+// ================================================================================================
 
 const poolElement = document.querySelector("#pool")
 const portal = document.querySelector("#portal")
@@ -30,7 +36,10 @@ const girlArm = document.querySelector("#girlArm")
 const girlShirt = document.querySelector("#girlShirt")
 const girlLeg = document.querySelector("#girlLeg")
 
-//icones en vrac
+const phone = document.querySelector("#phone")
+const phoneCase = document.querySelector("#phoneCase")
+
+//icones en vrac-----------------------------------------
 const twitterIcon = document.querySelector("#twitterIco")
 const tiktikIcon = document.querySelector("#tiktokIco")
 const nintendo = document.querySelector("#switch")
@@ -41,66 +50,64 @@ const netflixIcon = document.querySelector("#netflixIco")
 const plante = document.querySelector("#plante")
 
 
-//Au premier plan
+//Au premier plan-------------------------------
 const handMe = document.querySelector("#handMe")
 
-//FIN PARRALAX ELEMENTS  ##################################################################################
+//🔴 FIN PARRALAX ELEMENTS  ================================================================================================
 
 
 
+//🟢 FONCTIONS ================================================================================================
+// ================================================================================================
 
+//La position horizontale de mon curseur de souris est 
 
-
-
-// FONCTIONS #########################################################################################
-
-//Normaliser mes valeurs et obtenir un alpha
+//Normaliser mes valeurs et obtenir un alpha. / devient une valeur de 0 à 1 et permet d'avoir un alpha pour mon interpolation linéaire.
 function normalize(val, max, min){ return (val - min) / (max - min); }
 
-//ma lerp-machine (min, max, alpha)
+//ma lerp-machine (min, max, alpha) / Pointe une valeur définie par l'alpha (0 à 1), qui se situe entre deux valeurs prédéfinies.
 function lerp(x, y, a){ return x*(1-a) + y*a;}
-
-// FIN DES FONCTIONS #########################################################################################
-
+//🔴 FIN DES FONCTIONS ================================================================================================
 
 
 
-//RESIZE DU POSTER ################################################################################
-poster.addEventListener("click", ()=>{ 
-    posterScale = 0.9;
-    poster.style.transform = `scale(${posterScale})` 
-})
+//🟢 MAIN PARRALAX CLUSTERFUCK ================================================================================================
+// ================================================================================================
 
 
-
-//MAIN PARRALAX CLUSTERFUCK ################################################################################
 window.addEventListener("mousemove",(e)=>{
 
-
-    //alpha form where the user pointer is on the window
+    //alpha form where the user pointer is on the window-------------------------------------------------
     let cursorVerticalAlpha = normalize(e.clientY, window.innerHeight, 0.0);
     let cursorHorizontalAlpha = normalize(e.clientX, window.innerWidth, 0.0);
+    console.log(cursorVerticalAlpha+"/"+cursorHorizontalAlpha)
 
+    // rotation du poster & des informations superposées----------------------------------------------------------
 
-    // Morph du poster pour donner l'impession d'une rotation
-    
+    let shine = 0;
 
+    poster.style.transform = `rotateY(${lerp(-8, 8, cursorHorizontalAlpha)}deg) rotateX(${lerp(8, -8, cursorVerticalAlpha)}deg) scale(${posterScale})`
+    poster.style.filter = `drop-shadow(${lerp(2, -2, cursorHorizontalAlpha)}px ${lerp(2, -2, cursorVerticalAlpha)}px 0px white)`
 
+    titleShaker.style.transform = `
+    translate( ${lerp(-3, 3, cursorHorizontalAlpha)}%, ${lerp(-6, 10, cursorVerticalAlpha)}%)
+    rotateY(${lerp(-8, 8, cursorHorizontalAlpha)}deg) 
+    rotateX(${lerp(8, -5, cursorVerticalAlpha)}deg)`
 
-    poster.style.transform = `rotateY(${lerp(-5, 5, cursorHorizontalAlpha)}deg) rotateX(${lerp(5, -5, cursorVerticalAlpha)}deg) scale(${posterScale})`
+    titleShaker.style.filter = `drop-shadow(${lerp(4, -2, cursorHorizontalAlpha)}px ${lerp(4, -2, cursorVerticalAlpha)}px 0px #5a0799)`
 
-    //Parralax ==============================================================================================================
+    //Parralax interieur ---------------------------------------------------------------------------------------------
     // background
     background.style.transform = `translate( ${lerp(5, -5, cursorHorizontalAlpha)}%, ${lerp(5, 0, cursorVerticalAlpha)}%)`
 
-    // Front of the back after the middle 👍
+    // Front of the back after the middle 👍---------------------------------------------------------------------------
     pipes.style.transform = `translate( ${lerp(7, -7, cursorHorizontalAlpha)}%, ${lerp(12, -10, cursorVerticalAlpha)}%)`
 
-    //Aside the middle
+    //Aside the middle------------------------------------------------------------------------------------------------
     mac.style.transform = `translate( ${lerp(10, -10, cursorHorizontalAlpha)}%, ${lerp(20, 0, cursorVerticalAlpha)}%)`
     table.style.transform = `translate( ${lerp(7.5, -7.5, cursorHorizontalAlpha)}%, ${lerp(11, 0, cursorVerticalAlpha)}%)`
 
-    // middle
+    // middle------------------------------------------------------------------------------------------------------------
     poolElement.style.transform = `translate( ${lerp(1, -1, cursorHorizontalAlpha)}%, ${lerp(1, 0, cursorVerticalAlpha)}%)
     skewX(${lerp(-1, 1, cursorHorizontalAlpha)}deg)
     scaleY(${lerp(1, 1.1, cursorVerticalAlpha)})`
@@ -108,8 +115,7 @@ window.addEventListener("mousemove",(e)=>{
     portal.style.transform = `translate( ${lerp(3, -3, cursorHorizontalAlpha)}%, ${lerp(1, -1, cursorVerticalAlpha)}%) rotate(10deg) skewX(-28deg)`
 
 
-
-    // middleGirl
+    // middleGirl------------------------------------------------------------------------------------------------------
     girlHead.style.transform = `translate( ${lerp(4, -4, cursorHorizontalAlpha)}%, ${lerp(2, 0, cursorVerticalAlpha)}%)`
 
     girlArm.style.transform = `translate( ${lerp(3, -3, cursorHorizontalAlpha)}%, ${lerp(2, 0, cursorVerticalAlpha)}%)`
@@ -118,7 +124,14 @@ window.addEventListener("mousemove",(e)=>{
     
     girlShirt.style.transform = `translate( ${lerp(9, -9, cursorHorizontalAlpha)}%, ${lerp(2, 0, cursorVerticalAlpha)}%)`
 
-    // pool icons
+    //Phone and 3D illusion------------------------------------------------------------------------------------------------------------------------------
+    phone.style.transform = `rotateY(${lerp(-10, 10, cursorHorizontalAlpha)}deg) rotateX(${lerp(10, -10, cursorVerticalAlpha)}deg) scale(${posterScale})`
+
+    phoneCase.style.transform = `rotateY(${lerp(-10, 10, cursorHorizontalAlpha)}deg) rotateX(${lerp(10, -10, cursorVerticalAlpha)}deg) scale(${posterScale})
+    translate( ${lerp(-1, 1, cursorHorizontalAlpha)}%, ${lerp(-2, 2, cursorVerticalAlpha)}%)`
+
+
+    // pool icons-------------------------------------------------------------------------------------------------------------
     twitterIcon.style.transform = `translate( ${lerp(15, -15, cursorHorizontalAlpha)}%, ${lerp(12, 0, cursorVerticalAlpha)}%)`
 
     tiktikIcon.style.transform = `translate( ${lerp(13, -13, cursorHorizontalAlpha)}%, ${lerp(20, 0, cursorVerticalAlpha)}%)`
@@ -135,11 +148,14 @@ window.addEventListener("mousemove",(e)=>{
     handMe.style.transform = `translate( ${lerp(-6, 6, cursorHorizontalAlpha)}%, ${lerp(-3, 3, cursorVerticalAlpha)}%)`
 
     plante.style.transform = `translate( ${lerp(-1, 2, cursorHorizontalAlpha)}%, ${lerp(-11, 3, cursorVerticalAlpha)}%)`
-
-
 })
+//🔴 FIN DU MAIN PARRALAX CLUSTERFUCK =====================================================================================
 
-// EasterEgg
+
+
+//🟢 EasterEgg ================================================================================================
+// ================================================================================================
+
 mac.addEventListener("click",()=>{
     
     if (appleClick < 40){
@@ -157,3 +173,4 @@ mac.addEventListener("click",()=>{
         mac.style.filter = "brightness(200%)";
     }
 })
+//🔴 FIN EasterEgg ================================================================================================
