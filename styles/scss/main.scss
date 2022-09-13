@@ -37,20 +37,25 @@ html::before{
     position: relative;
     background-color: $couleur-div; /* A retirer/modifier */
 
+    border: solid white 2px;
+
     width: 70vh;
     height: 96vh;
     margin: auto;
 
     margin-top: -18vh;
 
-    border-radius: 2px;
+    border-radius: 12px;
 
     overflow: hidden;
 
 
     user-select: none;
     pointer-events: none;
+
+    
 }
+
 
 // FORAMAT IMAGES WEBP
 .formatContent{

@@ -1,14 +1,10 @@
 console.log("Script activé! beep-boop")
 
-
-
 //🟢 QUERY ET VARIABLES ================================================================================================
 // ================================================================================================
 
 const poster = document.querySelector(".affiche-container");
 const titleShaker = document.querySelector("#titleShaker")
-
-
 
 let appleClick = "0"
 let posterScale = 0.9;
@@ -25,17 +21,13 @@ poster.style.transform = `scale(${posterScale})`
 const poolElement = document.querySelector("#pool")
 const portal = document.querySelector("#portal")
 const background = document.querySelector("#background")
-
 const pipes = document.querySelector("#pipes")
-
 const table = document.querySelector("#table")
 const mac = document.querySelector("#mac")
-
 const girlHead = document.querySelector("#girlHead")
 const girlArm = document.querySelector("#girlArm")
 const girlShirt = document.querySelector("#girlShirt")
 const girlLeg = document.querySelector("#girlLeg")
-
 const phone = document.querySelector("#phone")
 const phoneCase = document.querySelector("#phoneCase")
 
@@ -46,7 +38,6 @@ const nintendo = document.querySelector("#switch")
 const joyB = document.querySelector("#joyConbleu")
 const joyR = document.querySelector("#joyConRouge")
 const netflixIcon = document.querySelector("#netflixIco")
-
 const plante = document.querySelector("#plante")
 
 
@@ -62,11 +53,22 @@ const handMe = document.querySelector("#handMe")
 
 //La position horizontale de mon curseur de souris est 
 
-//Normaliser mes valeurs et obtenir un alpha. / devient une valeur de 0 à 1 et permet d'avoir un alpha pour mon interpolation linéaire.
+//Normaliser et obtenir un alpha d'une valeur donnée (0 à 1)
 function normalize(val, max, min){ return (val - min) / (max - min); }
 
-//ma lerp-machine (min, max, alpha) / Pointe une valeur définie par l'alpha (0 à 1), qui se situe entre deux valeurs prédéfinies.
-function lerp(x, y, a){ return x*(1-a) + y*a;}
+
+//lerp (min, max, alpha) 
+//Pointe une valeur définie par l'alpha (0 à 1), qui se situe entre deux valeurs prédéfinies(x, y)
+function lerp(x, y, alpha){ return x * (1 - alpha) + y * alpha; }
+
+
+// Alpha centré =   minValue: 1 - center:0 -  maxValue:1
+function center(alpha){
+    let newAlpha = lerp(-1, 1, alpha)
+    if( newAlpha < 0) {return newAlpha *= -1}
+    else{ return newAlpha}
+}
+
 //🔴 FIN DES FONCTIONS ================================================================================================
 
 
@@ -80,14 +82,23 @@ window.addEventListener("mousemove",(e)=>{
     //alpha form where the user pointer is on the window-------------------------------------------------
     let cursorVerticalAlpha = normalize(e.clientY, window.innerHeight, 0.0);
     let cursorHorizontalAlpha = normalize(e.clientX, window.innerWidth, 0.0);
-    console.log(cursorVerticalAlpha+"/"+cursorHorizontalAlpha)
+
+    // console.log(cursorVerticalAlpha+"/"+cursorHorizontalAlpha)
+
+    console.log(center(cursorHorizontalAlpha))
+
+    
+
 
     // rotation du poster & des informations superposées----------------------------------------------------------
 
-    let shine = 0;
+
 
     poster.style.transform = `rotateY(${lerp(-8, 8, cursorHorizontalAlpha)}deg) rotateX(${lerp(8, -8, cursorVerticalAlpha)}deg) scale(${posterScale})`
-    poster.style.filter = `drop-shadow(${lerp(2, -2, cursorHorizontalAlpha)}px ${lerp(2, -2, cursorVerticalAlpha)}px 0px white)`
+    poster.style.filter = `
+    drop-shadow(${lerp(4, -4, cursorHorizontalAlpha)}px ${lerp(4, -4, cursorVerticalAlpha)}px ${lerp(2, 0, center(cursorHorizontalAlpha))}px white)
+    
+    drop-shadow(${lerp(10, -10, cursorHorizontalAlpha)}px ${lerp(10, -10, cursorVerticalAlpha)}px 12px #5a0799)`
 
     titleShaker.style.transform = `
     translate( ${lerp(-3, 3, cursorHorizontalAlpha)}%, ${lerp(-6, 10, cursorVerticalAlpha)}%)
