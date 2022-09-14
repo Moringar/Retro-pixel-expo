@@ -96,8 +96,10 @@ window.addEventListener("mousemove",(e)=>{
 
     // Le poster entier
     poster.style.transform = `rotateY(${lerp(-8, 8, cursorHorizontalAlpha)}deg) rotateX(${lerp(8, -8, cursorVerticalAlpha)}deg) scale(${posterScale})`
+
     poster.style.filter = `
     drop-shadow(${lerp(4, -4, cursorHorizontalAlpha)}px ${lerp(4, -4, cursorVerticalAlpha)}px ${lerp(2, 0, center(cursorHorizontalAlpha))}px white)
+    
     drop-shadow(${lerp(10, -10, cursorHorizontalAlpha)}px ${lerp(10, -10, cursorVerticalAlpha)}px 12px #5a0799)`
 
     // Les éléments du header
@@ -120,12 +122,6 @@ window.addEventListener("mousemove",(e)=>{
 
     // 👻 opacité du module de bas de page selon la proximité
 
-    if (moreInfo.classList.contains("spot")){
-        moreInfo.style.opacity = lerp(0, 1, lerp(-1, 1, cursorVerticalAlpha));
-    }
-    else{
-        null
-    }
 
 
 
@@ -192,9 +188,44 @@ window.addEventListener("mousemove",(e)=>{
 //🟢 Comportement du module "plus d'informations" du bas de page ===========================
 // ================================================================================================
 // Changement d'état
+let opened = false;
 moreInfo.addEventListener("click", ()=>{
-    moreInfo.classList.toggle("spot")
-    moreInfo.classList.toggle("full")
+
+    if(opened){
+
+        gsap.to(moreInfo,{
+            yPercent:0,
+            width: "8vh",
+            height: "8vh",
+            borderRadius: "100% 100% 0% 0%", 
+            
+            duration:0.2,
+            reverse: true
+        },)
+    
+        for (let obj of moreInfo.children){
+            obj.style.display ="none"
+        }
+        opened=false
+    }
+
+    else{
+        gsap.to(moreInfo,{
+            yPercent:-500,
+            width: "80%",
+            borderRadius: 0, 
+            
+            duration:0.2
+        },)
+    
+        for (let obj of moreInfo.children){
+            obj.style.display ="block"
+        }
+        opened=true
+    }
+
+
+
 })
 
 

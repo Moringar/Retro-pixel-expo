@@ -137,18 +137,6 @@ aside .spot {
 aside .spot * {
   display: none;
 }
-aside .full {
-  padding: 5vh;
-  width: 80vh;
-  height: 50vh;
-  border-radius: 2% 2% 2% 2%;
-  background-color: rgba(116, 116, 116, 0.651);
-  backdrop-filter: blur(2px);
-  margin-bottom: 2vh;
-}
-aside .full * {
-  display: block;
-}
 
 #Noisefilter {
   width: 100%;
