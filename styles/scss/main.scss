@@ -145,51 +145,11 @@ aside{
     display: flex;
     justify-content: center;
     bottom: 0;
-
-
-    p{
-        color: white;
-        font-family: sans-serif;
-        user-select: none;
-    }
-
-
-
-    #moreinfo{
-        position: absolute;
-    }
-
-
-    .spot{
-        margin: auto;
-        width: 8vh;
-        height: 8vh;
-        border-radius: 100% 100% 0% 0%;
-        background-color: rgba(116, 116, 116, 0.493);
-
-        margin-bottom: -2vh;
-
-        *{display: none;}
-
-    }
-    
-
-    .full{
-        padding: 5vh;
-
-        width: 80vh;
-        height: 50vh;
-        border-radius: 2% 2% 2% 2%;
-        background-color: rgba(116, 116, 116, 0.651);
-        backdrop-filter: blur(2px);
-        margin-bottom: 2vh;
-        
-        *{display: block;}
-    }
-
 }
 
 //🔴 FIN Hors-parralax==================================================================
+
+
 
 
 

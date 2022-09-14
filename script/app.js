@@ -6,7 +6,6 @@ console.log("Script activé! beep-boop")
 const poster = document.querySelector(".affiche-container");
 const titleShaker = document.querySelector("#titleShaker")
 const logoHolder = document.querySelector("#logoHolder")
-const moreInfo = document.querySelector("#moreInfo")
 
 let appleClick = "0"
 let posterScale = 0.9;
@@ -120,14 +119,6 @@ window.addEventListener("mousemove",(e)=>{
 
     // 👻 opacité du module de bas de page selon la proximité
 
-    if (moreInfo.classList.contains("spot")){
-        moreInfo.style.opacity = lerp(0, 1, lerp(-1, 1, cursorVerticalAlpha));
-    }
-    else{
-        null
-    }
-
-
 
 
     // 🦕 Parralax interieur ---------------------------------------------------------------------------------------------
@@ -191,11 +182,6 @@ window.addEventListener("mousemove",(e)=>{
 
 //🟢 Comportement du module "plus d'informations" du bas de page ===========================
 // ================================================================================================
-// Changement d'état
-moreInfo.addEventListener("click", ()=>{
-    moreInfo.classList.toggle("spot")
-    moreInfo.classList.toggle("full")
-})
 
 
 //🔴 Fin du module "plus d'informations" du bas de page ============================================
