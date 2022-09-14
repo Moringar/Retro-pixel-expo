@@ -5,6 +5,7 @@ console.log("Script activé! beep-boop")
 
 const poster = document.querySelector(".affiche-container");
 const titleShaker = document.querySelector("#titleShaker")
+const logoHolder = document.querySelector("#logoHolder")
 
 let appleClick = "0"
 let posterScale = 0.9;
@@ -90,16 +91,15 @@ window.addEventListener("mousemove",(e)=>{
     
 
 
-    // rotation du poster & des informations superposées----------------------------------------------------------
+    // 🦕 Rotation du poster & des informations superposées----------------------------------------------------------
 
-
-
+    // Le poster entier
     poster.style.transform = `rotateY(${lerp(-8, 8, cursorHorizontalAlpha)}deg) rotateX(${lerp(8, -8, cursorVerticalAlpha)}deg) scale(${posterScale})`
     poster.style.filter = `
     drop-shadow(${lerp(4, -4, cursorHorizontalAlpha)}px ${lerp(4, -4, cursorVerticalAlpha)}px ${lerp(2, 0, center(cursorHorizontalAlpha))}px white)
-    
     drop-shadow(${lerp(10, -10, cursorHorizontalAlpha)}px ${lerp(10, -10, cursorVerticalAlpha)}px 12px #5a0799)`
 
+    // Les éléments du header
     titleShaker.style.transform = `
     translate( ${lerp(-3, 3, cursorHorizontalAlpha)}%, ${lerp(-6, 10, cursorVerticalAlpha)}%)
     rotateY(${lerp(-8, 8, cursorHorizontalAlpha)}deg) 
@@ -107,7 +107,19 @@ window.addEventListener("mousemove",(e)=>{
 
     titleShaker.style.filter = `drop-shadow(${lerp(4, -2, cursorHorizontalAlpha)}px ${lerp(4, -2, cursorVerticalAlpha)}px 0px #5a0799)`
 
-    //Parralax interieur ---------------------------------------------------------------------------------------------
+    // Les éléments du footer
+    logoHolder.style.transform = `rotateY(${lerp(-8, 8, cursorHorizontalAlpha)}deg) rotateX(${lerp(8, -8, cursorVerticalAlpha)}deg) scale(${posterScale})`
+    logoHolder.style.filter = `
+    drop-shadow(${lerp(4, -4, cursorHorizontalAlpha)}px ${lerp(4, -4, cursorVerticalAlpha)}px ${lerp(2, 0, center(cursorHorizontalAlpha))}px #5a0799)
+    drop-shadow(${lerp(10, -10, cursorHorizontalAlpha)}px ${lerp(10, -10, cursorVerticalAlpha)}px 12px #5a0799)`
+    logoHolder.style.transform = `
+    translate( ${lerp(-3, 3, cursorHorizontalAlpha)}%, ${lerp(-15, 15, cursorVerticalAlpha)}%)
+    rotateY(${lerp(-8, 8, cursorHorizontalAlpha)}deg) 
+    rotateX(${lerp(8, -5, cursorVerticalAlpha)}deg)`
+
+
+
+    // 🦕 Parralax interieur ---------------------------------------------------------------------------------------------
     // background
     background.style.transform = `translate( ${lerp(5, -5, cursorHorizontalAlpha)}%, ${lerp(5, 0, cursorVerticalAlpha)}%)`
 
@@ -124,6 +136,7 @@ window.addEventListener("mousemove",(e)=>{
     scaleY(${lerp(1, 1.1, cursorVerticalAlpha)})`
 
     portal.style.transform = `translate( ${lerp(3, -3, cursorHorizontalAlpha)}%, ${lerp(1, -1, cursorVerticalAlpha)}%) rotate(10deg) skewX(-28deg)`
+
 
 
     // middleGirl------------------------------------------------------------------------------------------------------

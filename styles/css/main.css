@@ -41,7 +41,7 @@ html::before {
   width: 70vh;
   height: 96vh;
   margin: auto;
-  margin-top: -18vh;
+  margin-top: -24vh;
   border-radius: 12px;
   overflow: hidden;
   user-select: none;
@@ -53,7 +53,23 @@ html::before {
 }
 
 header {
-  margin-top: 9vh;
+  margin-top: 2vh;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  margin-top: -12vh;
+}
+
+#logoHolder {
+  display: flex;
+  justify-content: space-between;
+  width: 70vh;
+}
+#logoHolder img {
+  height: 9vh;
+  z-index: 100;
 }
 
 #titleShaker {
@@ -77,8 +93,18 @@ header {
 #subTitle {
   position: relative;
   z-index: 100;
+  top: 5vh;
+  left: -4vw;
+  font-size: 5vh;
   font-family: pixelFont;
   color: white;
+}
+#subTitle span {
+  margin-left: 2vw;
+}
+#subTitle span sup {
+  vertical-align: super;
+  font-size: 2vh;
 }
 
 #Noisefilter {
