@@ -43,7 +43,7 @@ html::before{
     height: 96vh;
     margin: auto;
 
-    margin-top: -18vh;
+    margin-top: -24vh;
 
     border-radius: 12px;
 
@@ -67,9 +67,31 @@ html::before{
 
 //🟢 Elements Hors-parralax==================================================================
 
+// General.........................
 header{
-    margin-top: 9vh;
     
+    margin-top: 2vh;
+    
+}
+footer{
+    display: flex;
+    justify-content: center;
+    margin-top: -12vh;
+
+
+}
+
+#logoHolder{
+    display: flex;
+    justify-content: space-between;
+
+    width: 70vh;
+    
+    img{
+        height: 9vh;
+        z-index: 100;
+    }
+
 }
 
 #titleShaker{
@@ -95,9 +117,22 @@ header{
 #subTitle{
     position: relative;
     z-index: 100;
+    top: 5vh;
+    left: -4vw;
+
+    font-size: 5vh;
 
     font-family: pixelFont;
     color: white;
+
+    span{
+        margin-left: 2vw;
+
+        sup{
+            vertical-align: super;
+            font-size: 2vh; 
+        }
+    }
 }
 //🔴 FIN Hors-parralax==================================================================
 
