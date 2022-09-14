@@ -54,12 +54,16 @@ html::before {
 
 header {
   margin-top: 2vh;
+  user-select: none;
+  pointer-events: none;
 }
 
 footer {
   display: flex;
   justify-content: center;
   margin-top: -12vh;
+  user-select: none;
+  pointer-events: none;
 }
 
 #logoHolder {
@@ -105,6 +109,45 @@ footer {
 #subTitle span sup {
   vertical-align: super;
   font-size: 2vh;
+}
+
+aside {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+}
+aside p {
+  color: white;
+  font-family: sans-serif;
+  user-select: none;
+}
+aside #moreinfo {
+  position: absolute;
+}
+aside .spot {
+  margin: auto;
+  width: 8vh;
+  height: 8vh;
+  border-radius: 100% 100% 0% 0%;
+  background-color: rgba(116, 116, 116, 0.493);
+  margin-bottom: -2vh;
+}
+aside .spot * {
+  display: none;
+}
+aside .full {
+  padding: 5vh;
+  width: 80vh;
+  height: 50vh;
+  border-radius: 2% 2% 2% 2%;
+  background-color: rgba(116, 116, 116, 0.651);
+  backdrop-filter: blur(2px);
+  margin-bottom: 2vh;
+}
+aside .full * {
+  display: block;
 }
 
 #Noisefilter {

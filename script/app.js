@@ -6,6 +6,7 @@ console.log("Script activé! beep-boop")
 const poster = document.querySelector(".affiche-container");
 const titleShaker = document.querySelector("#titleShaker")
 const logoHolder = document.querySelector("#logoHolder")
+const moreInfo = document.querySelector("#moreInfo")
 
 let appleClick = "0"
 let posterScale = 0.9;
@@ -74,10 +75,10 @@ function center(alpha){
 
 
 
-//🟢 MAIN PARRALAX CLUSTERFUCK ================================================================================================
+//🟢 MAIN PARRALAX CLUSTERFUCK ======================================================================
 // ================================================================================================
 
-
+// Quand l'utilisateur bouge son curseur sur son écran.
 window.addEventListener("mousemove",(e)=>{
 
     //alpha form where the user pointer is on the window-------------------------------------------------
@@ -116,6 +117,16 @@ window.addEventListener("mousemove",(e)=>{
     translate( ${lerp(-3, 3, cursorHorizontalAlpha)}%, ${lerp(-15, 15, cursorVerticalAlpha)}%)
     rotateY(${lerp(-8, 8, cursorHorizontalAlpha)}deg) 
     rotateX(${lerp(8, -5, cursorVerticalAlpha)}deg)`
+
+    // 👻 opacité du module de bas de page selon la proximité
+
+    if (moreInfo.classList.contains("spot")){
+        moreInfo.style.opacity = lerp(0, 1, lerp(-1, 1, cursorVerticalAlpha));
+    }
+    else{
+        null
+    }
+
 
 
 
@@ -162,6 +173,7 @@ window.addEventListener("mousemove",(e)=>{
 
     nintendo.style.transform = `translate( ${lerp(7, -7, cursorHorizontalAlpha)}%, ${lerp(12, 0, cursorVerticalAlpha)}%)`
 
+
     joyB.style.transform = `translate( ${lerp(22, -22, cursorHorizontalAlpha)}%, ${lerp(12, 0, cursorVerticalAlpha)}%)`
 
     joyR.style.transform = `translate( ${lerp(16, -16, cursorHorizontalAlpha)}%, ${lerp(12, 0, cursorVerticalAlpha)}%)`
@@ -174,6 +186,19 @@ window.addEventListener("mousemove",(e)=>{
     plante.style.transform = `translate( ${lerp(-1, 2, cursorHorizontalAlpha)}%, ${lerp(-11, 3, cursorVerticalAlpha)}%)`
 })
 //🔴 FIN DU MAIN PARRALAX CLUSTERFUCK =====================================================================================
+
+
+
+//🟢 Comportement du module "plus d'informations" du bas de page ===========================
+// ================================================================================================
+// Changement d'état
+moreInfo.addEventListener("click", ()=>{
+    moreInfo.classList.toggle("spot")
+    moreInfo.classList.toggle("full")
+})
+
+
+//🔴 Fin du module "plus d'informations" du bas de page ============================================
 
 
 
