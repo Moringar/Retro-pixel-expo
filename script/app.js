@@ -6,7 +6,6 @@ console.log("Script activé! beep-boop")
 const poster = document.querySelector(".affiche-container");
 const titleShaker = document.querySelector("#titleShaker")
 const logoHolder = document.querySelector("#logoHolder")
-const moreInfo = document.querySelector("#moreInfo")
 
 let appleClick = "0"
 let posterScale = 0.9;
@@ -96,8 +95,10 @@ window.addEventListener("mousemove",(e)=>{
 
     // Le poster entier
     poster.style.transform = `rotateY(${lerp(-8, 8, cursorHorizontalAlpha)}deg) rotateX(${lerp(8, -8, cursorVerticalAlpha)}deg) scale(${posterScale})`
+
     poster.style.filter = `
     drop-shadow(${lerp(4, -4, cursorHorizontalAlpha)}px ${lerp(4, -4, cursorVerticalAlpha)}px ${lerp(2, 0, center(cursorHorizontalAlpha))}px white)
+    
     drop-shadow(${lerp(10, -10, cursorHorizontalAlpha)}px ${lerp(10, -10, cursorVerticalAlpha)}px 12px #5a0799)`
 
     // Les éléments du header
@@ -119,14 +120,6 @@ window.addEventListener("mousemove",(e)=>{
     rotateX(${lerp(8, -5, cursorVerticalAlpha)}deg)`
 
     // 👻 opacité du module de bas de page selon la proximité
-
-    if (moreInfo.classList.contains("spot")){
-        moreInfo.style.opacity = lerp(0, 1, lerp(-1, 1, cursorVerticalAlpha));
-    }
-    else{
-        null
-    }
-
 
 
 
@@ -191,12 +184,30 @@ window.addEventListener("mousemove",(e)=>{
 
 //🟢 Comportement du module "plus d'informations" du bas de page ===========================
 // ================================================================================================
-// Changement d'état
-moreInfo.addEventListener("click", ()=>{
-    moreInfo.classList.toggle("spot")
-    moreInfo.classList.toggle("full")
-})
 
+// Ouverture de la secion informations
+let info = document.querySelector('#info')
+let exit = document.querySelector("#exit")
+
+gsap.to(info.children, {display:"none",opacity:0, duration:0, scale:0})
+
+info.addEventListener("click",()=>{
+    gsap.to("#info", {y:-60, width:"80vh", height:"fit-content", borderRadius:"12px", duration:0.1,})
+    gsap.to("#info", {backgroundColor:"rgba(255, 255, 255, 0)"})
+    gsap.to(info.children, {display:"flex",opacity:100, duration:0.2, scale:1})
+
+    event.stopPropagation();
+    })
+
+
+//fermeture de la section informations
+exit.addEventListener("click",()=>{
+    gsap.to("#info", {y:0, width:"9vh", height:"9vh", borderRadius:"100% 100% 0% 0%", duration:0.1,})
+    gsap.to("#info", {backgroundColor:"#7D29C7"})
+    gsap.to(info.children, {display:"none",opacity:0, duration:0, scale:0})
+    event.stopPropagation();
+
+})
 
 //🔴 Fin du module "plus d'informations" du bas de page ============================================
 
@@ -207,7 +218,7 @@ moreInfo.addEventListener("click", ()=>{
 
 mac.addEventListener("click",()=>{
     
-    if (appleClick < 40){
+    if (appleClick < 15){
 
         appleClick++
         
@@ -219,7 +230,12 @@ mac.addEventListener("click",()=>{
 
     
     else{
-        mac.style.filter = "brightness(200%)";
+        mac.style.filter = "brightness(200%)"
+        gsap.to("#girlArm", {y:450, ease:'circ.out', duration:2})
+        gsap.to("#girlArm", {x:-200, ease:'circ.out', duration:1})
+        gsap.to("#girlArm", {opacity:0, duration:0.5, delay:0.5})
+        gsap.to("#girlArm", {display:'none', delay:4})
+
     }
 })
 //🔴 FIN EasterEgg ================================================================================================
