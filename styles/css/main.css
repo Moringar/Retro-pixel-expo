@@ -118,6 +118,7 @@ aside {
   justify-content: center;
   bottom: 0;
 }
+<<<<<<< HEAD
 aside p {
   color: white;
   font-family: sans-serif;
@@ -137,6 +138,8 @@ aside .spot {
 aside .spot * {
   display: none;
 }
+=======
+>>>>>>> Module-bottom-Gsap
 
 #Noisefilter {
   width: 100%;

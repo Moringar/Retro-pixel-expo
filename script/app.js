@@ -6,7 +6,6 @@ console.log("Script activé! beep-boop")
 const poster = document.querySelector(".affiche-container");
 const titleShaker = document.querySelector("#titleShaker")
 const logoHolder = document.querySelector("#logoHolder")
-const moreInfo = document.querySelector("#moreInfo")
 
 let appleClick = "0"
 let posterScale = 0.9;
@@ -122,8 +121,11 @@ window.addEventListener("mousemove",(e)=>{
 
     // 👻 opacité du module de bas de page selon la proximité
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> Module-bottom-Gsap
 
 
     // 🦕 Parralax interieur ---------------------------------------------------------------------------------------------
@@ -187,6 +189,7 @@ window.addEventListener("mousemove",(e)=>{
 
 //🟢 Comportement du module "plus d'informations" du bas de page ===========================
 // ================================================================================================
+<<<<<<< HEAD
 // Changement d'état
 let opened = false;
 moreInfo.addEventListener("click", ()=>{
@@ -227,6 +230,8 @@ moreInfo.addEventListener("click", ()=>{
 
 
 })
+=======
+>>>>>>> Module-bottom-Gsap
 
 
 //🔴 Fin du module "plus d'informations" du bas de page ============================================
